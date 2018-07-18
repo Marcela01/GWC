@@ -6,13 +6,14 @@ def load_img(filename):
     return im
 
 def show_img(im):
+    #shows image to user
     im.show()
 
 def save_img(im, filename):
     im.save(filename, "jpeg")
-    show_img(im)
+    show_img()
 
-def obamicon(im):
+def obamicon():
     #load the pixel data from im.
     pixels = im.getdata()
     #create a list to hold the new image pixel data
@@ -42,4 +43,4 @@ def obamicon(im):
 
     newim = Image.new("RGB", im.size)
     newim.putdata(new_pixels)
-    return newim
+    return
