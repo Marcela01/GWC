@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="Script.css"
+<body>
+  <p><h2>Check if the input is a number?</h2></p>
+  <input id="n">
+<button type="button" onClick="myFunction()">Submit</button>
+<p id="demo"></p>
+<script>
+function myFunction() {
+    var x, text;
+    x = document.getElementById("n").value;
+    if (isNaN(x) || x < 1 || x > 10) {
+      text = "input not valid";
+    } else {
+      text = "Input OK";
+    }
+    document.getElementById("demo").innerHTML = text;
+    alert(text);
+}
+
+function validate(){
+  //alert("here")
+  var phoneNumber = document.getElementById('phone-number').value;
+  var postalCode = document.getElementById('postal-code').value;
+
+
+  if(phoneNumber.length!=10||isNan(phoneNumber)){
+  	alert("Incorrect Phone number");
+  }
+  else if(postalCode.length!=6){
+    alert("Incorrect Postal Code");
+  }
+  return false;
+}
+</script>
+    &nbsp;&nbsp;
+<div>
+<h2> Date and Time</h2>
+
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = Date()">
+Click me for Date and Time.</button>
+<p id="demo"></p>
+</div>
+    &nbsp;&nbsp;
+<h3>Enter Phone Number and Postal Code</h3>
+<form onsubmit="validate()">
+  <p>
+  <input type="text"id="phone-number" placeholder="Phone Number"/>
+  </p><p>
+  <input type="text" id="postal-code" placeholder="Postal Code" />
+  </p>
+  <p>
+  <input type="submit" />
+   </p>
+</form>
+
+</body>
+
+</html>
