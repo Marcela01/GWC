@@ -1,12 +1,3 @@
-float ground1=577;
-float trix11 = 1760;
-float trix33= trix11+25;
-float trix22 = (trix11 +trix33)/2;
-float ground=279;
-float trix1 = 750;
-float trix3 = trix1+25;
-float trix2 = (trix1 + trix3)/2;
-float tritop = 40;
 int screen = 0;
 
 int w = 200;
@@ -50,7 +41,7 @@ int[][] blocks = {
   }
   ,   
   {
-    1150, 650, 300, 20, 1
+    1070, 620, 300, 20, 1
   }
   , 
   {
@@ -66,7 +57,7 @@ int[][] blocks = {
 
 void setup() {
   size(1880, 720);
-  frameRate(30);
+  frameRate(32);
   img = loadImage("https://cdn2.vectorstock.com/i/1000x1000/17/06/wall-brick-seamless-pattern-black-vector-2361706.jpg");
   
   
@@ -172,9 +163,9 @@ void playerUpdate() {
   
   fill(255, 0, 0);
   if(py > height){
-    exit();
+    screen=1;
   }
-  fill(255,160,122);
+  fill(152,204,255);
   rect(px, py, psize, psize);
 }
 
@@ -183,7 +174,7 @@ void playerUpdate() {
 
 
 void draw() {
-  if (screen==0){//game screen
+  if (screen==1){//game screen
       int ex = frameCount % img.width;
   copy(img, ex, 0, img.width, height, 0, 0, img.width, height);
   int ex2 = img.width - ex;
@@ -191,37 +182,96 @@ void draw() {
     copy(img, 0, 0, img.width, height, ex2, 0, img.width, height);
   }
 keyTyped();
-obstacles();
 obstacles1();
+obstacles2();
+obstacles3();
+end();
   }
       
   playerInput();
   blockUpdate();
   playerUpdate();
 
-  if(screen==1){ //losing screen
-    background(255);
-    fill(0);
+  if(screen==2){ //losing screen
+    background(0);
+    fill(255);
     textSize(24);
     String a = "You weren't able to make it past this obstacle, and woke up in an emergency room. The next morning, you were admited into Ingalls Memorial Hospital's Inpatient Psychiatry Care. After being discharged, you were set up with a therapist. And now, even though every day is battle to keep yourself alive, you keep fighting. (Press ENTER)";
     text(a, 360, 265, 700, 470);
-    if(keyCode == ENTER){
-      screen=0;
-    }}
+    if(keys[ENTER]){ 
+      px=20;
+      py=100;
+      screen=1;
+    }
   }
-void obstacles(){
-  fill(244, 191, 66);
-  noStroke();
-  triangle(trix1, ground+50, trix2, ground-tritop, trix3,ground+50); //obstacle
-  if((ground+5)==trix1 || px==trix3){ //if hit, go to losing screen
-    screen = 1;
+  if(screen==0){
+    background(204,204,255);
+    fill(0);
+    textSize(80);
+    String d = "HELP";
+    text(d, 830, 180, 700, 470);
+    textSize(27);
+    String e = "Use the Arrow Keys to move";
+    text(e, 760, 290, 700, 470);
+    textSize(20);
+    String h = "Hi my name is Bleu";
+    text(h, 830, 460, 700, 470);
+    textSize(20);
+    String f = "Press ENTER to start";
+    text(f, 830, 490, 700, 470);
+    fill(152,204,255);
+    rect(900, 400, 55, 55, 7);
+    if(keys[ENTER]){ 
+      px=20;
+      py=100;
+      screen=1;
+    }
   }
-} 
+  if(screen==3){
+    background(153,51,255);
+    fill(255);
+    textSize(25);
+    String b = "About a year ago, you started to have days where for a few hours, you felt sad or empty for a few hours, for no reason. Gradually, and seemingly out of nowhere, hours became days, weeks, and finally months. You tried something that you thought might make you feel better. And it did--you got a rush. But no matter how many times you tried, you were never able to get that same rush a second time. You kept persisting, and soon enough, it started to control you. You turned to it at least once a day, in higher and higher amounts. You felt like you were nothing without it, that you needed it to survive. You truly believed that it was all you were, and ever would be. But deep down, you knew it was causing more harm than good, and so you sought out help. You thought getting help would fix you. However, this was only the beginning. You would relapse countless times, lose friends, and lose hope. But each time, you picked yourself back up and kept";
+    String c = "going. Recovery has been a series of ups and downs, but you spend every second of every day fighting to survive. And guess what? You’re winning.(PRESS ENTER TO RESTART)";
+    text(b, 340, 115, 1000, 470);
+    text(c, 340, 575, 1000, 470);
+    if(keys[ENTER]){ 
+      px=20;
+      py=100;
+      screen=1;
+    }}}
+    
 void obstacles1(){
   fill(244, 191, 66);
   noStroke();
-  triangle(trix11, ground1+50, trix22, ground1-tritop, trix33,ground1+50); //obstacle
-  if((ground1+5)==trix11 || px==trix33){ //if hit, go to losing screen
+  triangle(750, 331, 762.5, 239, 775, 331); //obstacle
+  if(750<=px+50 && px<=775 && 239<=py && py<=331){ //if hit, go to losing screen
     screen = 1;
   }
 } 
+
+void obstacles2(){
+  fill(244, 191, 66);
+  noStroke();
+  triangle(1180, 620, 1200, 485, 1230, 620); //obstacle
+  if(1180<=px+50 && px<=1230 && 480<=py && py<=620){ //if hit, go to losing screen
+    screen = 1;
+  }
+} 
+
+void obstacles3(){
+  fill(244, 191, 66);
+  noStroke();
+  triangle(1760, 602, 1772.5, 537, 1785, 602); //obstacle
+  if(1760<=px+50 && px<=1785 && 537<=py && py<=602){ //if hit, go to losing screen
+    screen = 1;
+  }
+} 
+void end(){
+ fill(204,255,153);
+ noStroke();
+ rect(1870, 500, 15,120);
+ if(1860.5<=px && px<=1877.5 && 440<=py && py<=560){
+   screen = 2;
+ }
+}
