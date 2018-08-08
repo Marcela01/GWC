@@ -163,7 +163,7 @@ void playerUpdate() {
   
   fill(255, 0, 0);
   if(py > height){
-    screen=1;
+    screen=4;
   }
   fill(152,204,255);
   rect(px, py, psize, psize);
@@ -197,6 +197,18 @@ end();
     fill(255);
     textSize(24);
     String a = "You weren't able to make it past this obstacle, and woke up in an emergency room. The next morning, you were admited into Ingalls Memorial Hospital's Inpatient Psychiatry Care. After being discharged, you were set up with a therapist. And now, even though every day is battle to keep yourself alive, you keep fighting. (Press ENTER)";
+    text(a, 360, 265, 700, 470);
+    if(keys[ENTER]){ 
+      px=20;
+      py=100;
+      screen=1;
+    }
+  }
+  if(screen==4){ //losing screen if you fall of the screen
+    background(0);
+    fill(255);
+    textSize(24);
+    String a = "You fell of the screen and woke up in an emergency room. The next morning, you were admited into Ingalls Memorial Hospital's Inpatient Psychiatry Care. After being discharged, you were set up with a therapist. And now, even though every day is battle to keep yourself alive, you keep fighting. (Press ENTER)";
     text(a, 360, 265, 700, 470);
     if(keys[ENTER]){ 
       px=20;
@@ -246,7 +258,7 @@ void obstacles1(){
   noStroke();
   triangle(750, 331, 762.5, 239, 775, 331); //obstacle
   if(750<=px+50 && px<=775 && 239<=py && py<=331){ //if hit, go to losing screen
-    screen = 1;
+    screen = 2;
   }
 } 
 
@@ -255,7 +267,7 @@ void obstacles2(){
   noStroke();
   triangle(1180, 620, 1200, 485, 1230, 620); //obstacle
   if(1180<=px+50 && px<=1230 && 480<=py && py<=620){ //if hit, go to losing screen
-    screen = 1;
+    screen = 2;
   }
 } 
 
@@ -264,7 +276,7 @@ void obstacles3(){
   noStroke();
   triangle(1760, 602, 1772.5, 537, 1785, 602); //obstacle
   if(1760<=px+50 && px<=1785 && 537<=py && py<=602){ //if hit, go to losing screen
-    screen = 1;
+    screen = 2;
   }
 } 
 void end(){
@@ -272,6 +284,6 @@ void end(){
  noStroke();
  rect(1870, 500, 15,120);
  if(1860.5<=px && px<=1877.5 && 440<=py && py<=560){
-   screen = 2;
+   screen = 3;
  }
 }
